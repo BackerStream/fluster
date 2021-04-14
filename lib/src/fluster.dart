@@ -35,7 +35,7 @@ class Fluster<T extends Clusterable> {
   final List<KDBush?> _trees;
 
   /// A callback to generate clusters of the given input type.
-  final T Function(BaseCluster?, double?, double?)? _createCluster;
+  final T Function(BaseCluster, double, double)? _createCluster;
 
   Fluster({
     required this.minZoom,
@@ -167,7 +167,7 @@ class Fluster<T extends Clusterable> {
       return;
     } else {
       for (var child in childList) {
-        if (child.isCluster!) {
+        if (child.isCluster) {
           _extractClusterPoints(child.clusterId, points);
         } else {
           points.add(child);
